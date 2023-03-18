@@ -8,12 +8,20 @@ variables:
     description: "Task to run"
 
 stages:          # List of stages for jobs, and their order of execution
+  - prepare
   - parse
+
+clone:
+  stage: prepare
+  script:
+    - git clone https://github.com/haondt/Obsidian.git
+    - ls
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: parse
   script:
     - echo "Compiling the code..."
+    - ls
     - echo "Compile complete."
     - echo "$CI_PIPELINE_SOURCE"
     - pwd
