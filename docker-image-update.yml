@@ -19,5 +19,6 @@ trigger-generated:
   trigger:
     include:
       - artifact: generated-config.yml
+        job: generate
 
 
