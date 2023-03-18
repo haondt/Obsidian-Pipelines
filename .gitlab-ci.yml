@@ -28,6 +28,7 @@ build-job:       # This job runs in the build stage, which runs first.
       when: always
 
 docker-image-update-job:
+  stage: deploy
   script:
     - echo "foo"
   rules:
