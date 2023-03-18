@@ -1,0 +1,8 @@
+stages:
+  - foo
+  - bar
+
+docker-job:
+  stage: foo
+  script:
+    - echo "doing work"

@@ -31,4 +31,3 @@ job2:
     - docker-job:
   rules:
     if: $TASK == "docker_image_update"
-
