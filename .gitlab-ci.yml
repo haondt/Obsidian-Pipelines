@@ -15,9 +15,10 @@ get-ansible-scripts:
   stage: prepare
   script:
     - git clone https://github.com/haondt/Obsidian.git
+    - mv Obsidian/docker-automation/gitlab_runner/ansible .
   artifacts:
     paths:
-      - Obsidian/docker-automation/gitlab_runner/ansible/*
+      - ansible/
     expire_in: 1 day
 
 build-job:       # This job runs in the build stage, which runs first.
