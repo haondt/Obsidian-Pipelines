@@ -26,7 +26,8 @@ get-ansible-scripts:
 ansible:
   stage: ansible
   script:
-    - ls
+    - cd ansible
+    - ansible all -m ping
   dependencies:
     - get-ansible-scripts
 
