@@ -11,11 +11,13 @@ stages:          # List of stages for jobs, and their order of execution
   - prepare
   - parse
 
-clone:
+get-ansible-scripts:
   stage: prepare
   script:
     - git clone https://github.com/haondt/Obsidian.git
-    - ls
+  artifacts:
+    paths:
+      - Obsidian/docker-automation/gitlab_runner/ansible
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: parse
