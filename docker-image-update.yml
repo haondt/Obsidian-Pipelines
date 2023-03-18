@@ -5,7 +5,9 @@ stages:          # List of stages for jobs, and their order of execution
 generate:
   stage: generate
   script:
+    - ls
     - python3 generate.py > generated-config.yml
+    - ls
     - git status
     - cat generated-config.yml
   artifacts:
