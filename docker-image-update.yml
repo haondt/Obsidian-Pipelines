@@ -8,8 +8,7 @@ docker-image-update-job:
 generate:
   stage: generate
   needs:
-    - job: docker-image-update-job
-      optional: true
+    - docker-image-update-job
   script:
     - python3 generate.py > generated-config.yml
     - git status
