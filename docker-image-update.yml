@@ -1,4 +1,4 @@
-docker-image-update-job:
+this:
   stage: parse
   script:
     - echo "doing work"
@@ -6,7 +6,7 @@ docker-image-update-job:
 generate:
   stage: generate
   needs:
-    - docker-image-update-job
+    - this
   script:
     - python3 generate.py > generated-config.yml
     - git status
