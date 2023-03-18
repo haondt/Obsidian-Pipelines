@@ -25,7 +25,7 @@ get-ansible-scripts:
 
 ansible:
   stage: ansible
-  - script:
+  script:
     - ls
   include:
     - artifact: ansible-scripts
