@@ -1,8 +1,22 @@
-stages:
-  - foo
-  - bar
-
-docker-job:
+docker-image-update-job:
   stage: foo
   script:
     - echo "doing work"
+
+generate:
+  needs: docker-image-update-job
+  script:
+    - python3 generate.py > generated-config.yml
+    - git status
+    - cat generated-config.yml
+  artifacts:
+    paths:
+      - generated-config.yml
+
+trigger-generated:
+  stage: deploy
+  trigger:
+    include:
+      - artifact: generated-config.yml
+
+
