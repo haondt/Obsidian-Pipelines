@@ -16,8 +16,6 @@ generate:
   artifacts:
     paths:
       - generated-config.yml
-  rules:
-    - when: never
 
 trigger:
   stage: trigger
