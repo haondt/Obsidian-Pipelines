@@ -4,7 +4,7 @@ docker-image-update-job:
     - echo "doing work"
 
 generate:
-  stage: test
+  stage: deploy
   needs:
     - docker-image-update-job
   script:
@@ -16,7 +16,7 @@ generate:
       - generated-config.yml
 
 trigger-generated:
-  stage: deploy
+  stage: foo
   needs:
     - generate
   trigger:
