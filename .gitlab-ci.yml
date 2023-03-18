@@ -17,7 +17,7 @@ get-ansible-scripts:
     - git clone https://github.com/haondt/Obsidian.git
   artifacts:
     paths:
-      - Obsidian/docker-automation/gitlab_runner/ansible
+      - Obsidian/docker-automation/gitlab_runner/ansible/
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: parse
