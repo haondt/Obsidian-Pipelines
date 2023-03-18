@@ -2,6 +2,8 @@ from random import randint
 rnd = str(randint(0,100))
 rnd2 = str(randint(0,100))
 s = """
+stages:
+  - deploy
 j1:
   stage: deploy
   script:
