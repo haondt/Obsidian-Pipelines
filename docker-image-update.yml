@@ -1,9 +1,10 @@
 docker-image-update-job:
-  stage: foo
+  stage: test
   script:
     - echo "doing work"
 
 generate:
+  stage: test
   needs:
     - docker-image-update-job
   script:
@@ -16,6 +17,8 @@ generate:
 
 trigger-generated:
   stage: deploy
+  needs:
+    - generate
   trigger:
     include:
       - artifact: generated-config.yml
