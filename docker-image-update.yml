@@ -4,7 +4,8 @@ docker-image-update-job:
     - echo "doing work"
 
 generate:
-  needs: docker-image-update-job
+  needs:
+    - docker-image-update-job
   script:
     - python3 generate.py > generated-config.yml
     - git status
