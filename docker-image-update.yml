@@ -1,14 +1,6 @@
-docker-image-update-job:
-  stage: parse
-  script:
-    - echo "doing work"
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "web" && $TASK == "docker_image_update"
 
 generate:
   stage: generate
-  needs:
-    - docker-image-update-job
   script:
     - python3 generate.py > generated-config.yml
     - git status
