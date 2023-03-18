@@ -30,5 +30,5 @@ docker-image-update-job:
   rules:
     - if: $CI_PIPELINE_SOURCE == "web" && $TASK == "docker_image_update"
   trigger:
-    - include:
-        - local: 'docker-image-update.yml'
+    include:
+      - local: 'docker-image-update.yml'
