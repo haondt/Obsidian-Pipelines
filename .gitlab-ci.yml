@@ -27,9 +27,8 @@ ansible:
   stage: ansible
   script:
     - ls
-  include:
-    - artifact: ansible-scripts
-      job: get-ansible-scripts
+  dependencies:
+    - get-ansible-scripts
 
 
 build-job:       # This job runs in the build stage, which runs first.
