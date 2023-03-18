@@ -1,0 +1,18 @@
+{
+    "hosts": {
+        "docker-monitoring": {
+            "containers": [
+                "pyreminder",
+                "telegraf",
+                "grafana"
+            ]
+        },
+        "docker-media": {
+            "containers": [
+                "bazarr",
+                "bazarr_4k",
+                "lidarr"
+            ]
+        }
+    }
+}
