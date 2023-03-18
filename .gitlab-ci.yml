@@ -9,6 +9,7 @@ variables:
 
 stages:          # List of stages for jobs, and their order of execution
   - prepare
+  - ansible
   - parse
 
 get-ansible-scripts:
@@ -17,9 +18,19 @@ get-ansible-scripts:
     - git clone https://github.com/haondt/Obsidian.git
     - mv Obsidian/docker-automation/gitlab_runner/ansible .
   artifacts:
+    name: ansible-scripts
     paths:
       - ansible/
     expire_in: 1 day
+
+ansible:
+  stage: ansible
+  - script:
+    - ls
+  include:
+    - artifact: ansible-scripts
+      job: get-ansible-scripts
+
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: parse
