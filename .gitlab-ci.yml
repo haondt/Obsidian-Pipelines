@@ -1,5 +1,5 @@
 include:
-  - local: './docker-image-update.yml'
+  - local: 'docker-image-update.yml'
 variables:
   TASK:
     value: "docker_image_update"
@@ -27,7 +27,6 @@ build-job:       # This job runs in the build stage, which runs first.
       when: always
 
 job2:
-  extends:
-    - docker-job:
+  extends: docker-job
   rules:
-    if: $TASK == "docker_image_update"
+    - if: $TASK == "docker_image_update"
