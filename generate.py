@@ -3,9 +3,11 @@ rnd = str(randint(0,100))
 rnd2 = str(randint(0,100))
 s = """
 j1:
+  stage: deploy
   script:
     - echo "todays random number is $RANDINT1"
 j2:
+  stage: deploy
   script:
     - echo "todays random number is $RANDINT2"
 """

@@ -12,13 +12,13 @@ variables:
 
 
 stages:          # List of stages for jobs, and their order of execution
-  - build
-  - test
+  - parse
+  - generate
+  - trigger
   - deploy
-  - foo
 
 build-job:       # This job runs in the build stage, which runs first.
-  stage: build
+  stage: parse
   script:
     - echo "Compiling the code..."
     - echo "Compile complete."

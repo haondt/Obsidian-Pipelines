@@ -1,17 +1,12 @@
-stages:          # List of stages for jobs, and their order of execution
-  - build
-  - test
-  - deploy
-  - foo
 docker-image-update-job:
-  stage: test
+  stage: parse
   script:
     - echo "doing work"
 
 generate:
-  stage: deploy
+  stage: generate
   needs:
-    - "docker-image-update-job"
+    - docker-image-update-job
   script:
     - python3 generate.py > generated-config.yml
     - git status
@@ -20,8 +15,8 @@ generate:
     paths:
       - generated-config.yml
 
-trigger-generated:
-  stage: foo
+trigger:
+  stage: trigger
   needs:
     - generate
   trigger:
