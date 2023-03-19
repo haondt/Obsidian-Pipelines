@@ -8,6 +8,9 @@ variables:
       - "plex_update"
     description: "Task to run"
 
+workflow:
+  name: $TASK
+
 stages:
   - bootstrap
 
