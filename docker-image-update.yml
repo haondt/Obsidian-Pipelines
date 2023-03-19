@@ -13,7 +13,7 @@ get-containers:
   artifacts:
     name: docker-containers
     paths:
-      - containers.yml
+      - ansible/containers.yml
 
 generate:
   stage: generate
