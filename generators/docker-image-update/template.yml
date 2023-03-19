@@ -1,4 +1,0 @@
-$JOB_NAME:
-  stage: deploy
-  script:
-    - echo "todays random number is $RANDINT1"

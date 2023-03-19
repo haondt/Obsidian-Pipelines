@@ -7,22 +7,19 @@ get-containers:
   script:
     - cd ansible
     - ansible-playbook playbooks/list_docker_containers.yml
+    - mv containers.json ..
   needs:
     - pipeline: $PARENT_PIPELINE_ID
       job: get-ansible-scripts
   artifacts:
     name: docker-containers
     paths:
-      - ansible/containers.json
+      - containers.json
 
 generate:
   stage: generate
   script:
-    - ls
-    - python3 generate.py > generated-config.yml
-    - ls
-    - git status
-    - cat generated-config.yml
+    - cat containers.json | python3 generators/docker-image-update/generator.py > generated-config.yml
   needs:
     - get-containers
   artifacts:
