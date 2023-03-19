@@ -5,7 +5,8 @@ $HOST:$CONTAINER:
   stage: deploy
   when: manual
   script:
-    - echo "I am deploying to $HOST -> $CONTAINER"
+    - cd ansible
+    - ansible-playbook playbooks/update_docker_container.yml --limit $HOST -e "container_name=$CONTAINER"
 """
 
 output = """
