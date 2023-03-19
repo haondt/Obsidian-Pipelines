@@ -10,8 +10,6 @@ get-containers:
   needs:
     - pipeline: $PARENT_PIPELINE_ID
       job: get-ansible-scripts
-  dependencies:
-    - get-ansible-scripts
   artifacts:
     name: docker-containers
     paths:
