@@ -20,7 +20,7 @@ $HOST:
       job: get-ansible-scripts
   script:
     - cd ansible
-    - ansible-playbook playbooks/upgrade.yml --limit $HOST"
+    - ansible-playbook playbooks/upgrade.yml --limit $HOST
 """
 for host in hosts:
     output += template.replace("$HOST", host)
