@@ -1,6 +1,5 @@
 stages:          # List of stages for jobs, and their order of execution
   - generate
-  - trigger
 
 get-containers:
   stage: generate
@@ -28,7 +27,7 @@ generate:
     expire_in: 1 day
 
 trigger:
-  stage: trigger
+  stage: generate
   needs:
     - generate
   trigger:

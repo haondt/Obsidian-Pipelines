@@ -7,13 +7,11 @@ variables:
       - "create_docker_lxc"
     description: "Task to run"
 
-stages:          # List of stages for jobs, and their order of execution
-  - prepare
-  - ansible
-  - parse
+stages:
+  - bootstrap
 
 get-ansible-scripts:
-  stage: prepare
+  stage: bootstrap
   script:
     - git clone https://github.com/haondt/Obsidian.git
     - mv Obsidian/docker-automation/gitlab_runner/ansible .
@@ -23,22 +21,8 @@ get-ansible-scripts:
       - ansible/
     expire_in: 1 day
 
-
-
-build-job:       # This job runs in the build stage, which runs first.
-  stage: parse
-  script:
-    - echo "Compiling the code..."
-    - ls
-    - echo "Compile complete."
-    - echo "$CI_PIPELINE_SOURCE"
-    - pwd
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: always
-
 docker-image-update-job:
-  stage: parse
+  stage: bootstrap
   rules:
     - if: $CI_PIPELINE_SOURCE == "web" && $TASK == "docker_image_update"
   trigger:
