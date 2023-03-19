@@ -14,6 +14,7 @@ get-containers:
     name: docker-containers
     paths:
       - containers.json
+    expire_in: 1 day
 
 generate:
   stage: generate

@@ -1,13 +1,27 @@
 stages:
   - generate
 
-generate:
+get-hosts:
   stage: generate
   script:
-    - ansible-playbook ansible/playbooks/upgrade.yml --list-hosts | python3 generators/apt-upgrade/generator.py > generated-config.yml
+    - cd ansible
+    - ansible-playbook playbooks/upgrade.yml --list-hosts > hosts.txt
+    - mv hosts.txt ..
   needs:
     - pipeline: $PARENT_PIPELINE_ID
       job: get-ansible-scripts
+  artifacts:
+    name: hosts
+    paths:
+      - hosts.txt
+    expire_in: 1 day
+
+generate:
+  stage: generate
+  script:
+    - cat hosts.txt | python3 generators/apt-upgrade/generator.py > generated-config.yml
+  needs:
+    - get-hosts
   artifacts:
     paths:
       - generated-config.yml
