@@ -11,8 +11,8 @@ variables:
 workflow:
   name: $TASK
   rules:
-    - if: $CI_PIPELINE_SOURCE != "web"
-      when: never
+    - if: $CI_PIPELINE_SOURCE == "web"
+      when: always
 
 stages:
   - bootstrap
