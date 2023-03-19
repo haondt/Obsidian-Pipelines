@@ -44,3 +44,5 @@ docker-image-update-job:
   trigger:
     include:
       - local: 'docker-image-update.yml'
+  variables:
+    PARENT_PIPELINE_ID: $CI_PIPELINE_ID

@@ -7,6 +7,9 @@ get-containers:
   script:
     - cd ansible
     - ansible-playbook playbooks/list_docker_containers.yml
+  needs:
+    - pipeline: $PARENT_PIPELINE_ID
+      job: get-ansible-scripts
   dependencies:
     - get-ansible-scripts
   artifacts:
