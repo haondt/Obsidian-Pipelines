@@ -4,6 +4,9 @@ template = """
 $HOST:$CONTAINER:
   stage: deploy
   when: manual
+  needs:
+    - pipeline: $ROOT_PIPELINE_ID
+      job: get-ansible-scripts
   script:
     - cd ansible
     - ansible-playbook playbooks/update_docker_container.yml --limit $HOST -e "container_name=$CONTAINER"

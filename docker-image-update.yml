@@ -34,5 +34,7 @@ trigger:
     include:
       - artifact: generated-config.yml
         job: generate
+  variables:
+    ROOT_PIPELINE_ID: $PARENT_PIPELINE_ID
 
 
