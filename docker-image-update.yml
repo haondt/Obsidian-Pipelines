@@ -2,6 +2,18 @@ stages:          # List of stages for jobs, and their order of execution
   - generate
   - trigger
 
+get-containers:
+  stage: generate
+  script:
+    - cd ansible
+    - ansible-playbook playbooks/list_docker_containers.yml
+  dependencies:
+    - get-ansible-scripts
+  artifacts:
+    name: docker-containers
+    paths:
+      - containers.yml
+
 generate:
   stage: generate
   script:
@@ -10,6 +22,8 @@ generate:
     - ls
     - git status
     - cat generated-config.yml
+  needs:
+    - get-containers
   artifacts:
     paths:
       - generated-config.yml

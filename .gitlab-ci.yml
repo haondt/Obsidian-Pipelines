@@ -23,13 +23,6 @@ get-ansible-scripts:
       - ansible/
     expire_in: 1 day
 
-ansible:
-  stage: ansible
-  script:
-    - cd ansible
-    - ansible all -m ping
-  dependencies:
-    - get-ansible-scripts
 
 
 build-job:       # This job runs in the build stage, which runs first.
