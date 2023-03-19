@@ -20,6 +20,8 @@ get-ansible-scripts:
     paths:
       - ansible/
     expire_in: 1 day
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "web"
 
 docker-image-update-job:
   stage: bootstrap
