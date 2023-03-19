@@ -10,6 +10,9 @@ variables:
 
 workflow:
   name: $TASK
+  rules:
+    - if: $CI_PIPELINE_SOURCE != "web"
+      when: never
 
 stages:
   - bootstrap
@@ -30,7 +33,7 @@ get-ansible-scripts:
 docker-image-update:
   stage: bootstrap
   rules:
-    - if: $CI_PIPELINE_SOURCE == "web" && $TASK == "docker_image_update"
+    - if: $TASK == "docker_image_update"
   trigger:
     include:
       - local: 'docker-image-update.yml'
@@ -40,7 +43,7 @@ docker-image-update:
 plex-update:
   stage: bootstrap
   rules:
-    - if: $CI_PIPELINE_SOURCE == "web" && $TASK == "plex_update"
+    - if: $TASK == "plex_update"
   trigger:
     include:
       - local: 'plex-update.yml'
@@ -50,7 +53,7 @@ plex-update:
 apt-upgrade:
   stage: bootstrap
   rules:
-    - if: $CI_PIPELINE_SOURCE == "web" && $TASK == "apt_upgrade"
+    - if: $TASK == "apt_upgrade"
   trigger:
     include:
       - local: 'apt-upgrade.yml'
