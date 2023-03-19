@@ -1,0 +1,25 @@
+stages:
+  - generate
+
+generate:
+  stage: generate
+  script:
+    - ansible-playbook ansible/playbooks/upgrade.yml --list-hosts | python3 generators/apt-upgrade/generator.py > generated-config.yml
+  needs:
+    - pipeline: $PARENT_PIPELINE_ID
+      job: get-ansible-scripts
+  artifacts:
+    paths:
+      - generated-config.yml
+    expire_in: 1 day
+
+trigger:
+  stage: generate
+  needs:
+    - generate
+  trigger:
+    include:
+      - artifact: generated-config.yml
+        job: generate
+  variables:
+    ROOT_PIPELINE_ID: $PARENT_PIPELINE_ID

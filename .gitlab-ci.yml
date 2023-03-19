@@ -43,3 +43,13 @@ plex-update:
       - local: 'plex-update.yml'
   variables:
     PARENT_PIPELINE_ID: $CI_PIPELINE_ID
+
+apt-upgrade:
+  stage: bootstrap
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "web" && $TASK == "apt_upgrade"
+  trigger:
+    include:
+      - local: 'apt-upgrade.yml'
+  variables:
+    PARENT_PIPELINE_ID: $CI_PIPELINE_ID
