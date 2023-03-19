@@ -5,6 +5,7 @@ variables:
       - "docker_image_update"
       - "apt_upgrade"
       - "create_docker_lxc"
+      - "plex_update"
     description: "Task to run"
 
 stages:
@@ -23,12 +24,22 @@ get-ansible-scripts:
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
 
-docker-image-update-job:
+docker-image-update:
   stage: bootstrap
   rules:
     - if: $CI_PIPELINE_SOURCE == "web" && $TASK == "docker_image_update"
   trigger:
     include:
       - local: 'docker-image-update.yml'
+  variables:
+    PARENT_PIPELINE_ID: $CI_PIPELINE_ID
+
+plex-update:
+  stage: bootstrap
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "web" && $TASK == "plex_update"
+  trigger:
+    include:
+      - local: 'plex-update.yml'
   variables:
     PARENT_PIPELINE_ID: $CI_PIPELINE_ID

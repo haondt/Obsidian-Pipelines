@@ -1,0 +1,11 @@
+stages:
+  - deploy
+
+run-update:
+  stage: deploy
+  needs:
+    - pipeline: $PARENT_PIPELINE_ID
+      job: get-ansible-scripts
+  script:
+    - cd ansible
+    - ansible-playbook playbooks/plex_update.yml --limit plex
