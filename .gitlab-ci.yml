@@ -63,7 +63,7 @@ apt-upgrade:
 create-docker-lxc:
   stage: bootstrap
   rules:
-    - if: $TASK == "create-docker-lxc"
+    - if: $TASK == "create_docker_lxc"
   trigger:
     include:
       - local: 'create-docker-lxc.yml'
