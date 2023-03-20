@@ -7,9 +7,9 @@ variables:
       - "create_docker_lxc"
       - "plex_update"
     description: "Task to run"
-  DOCKER_IMAGE_UPDATE_SUFFIX:
+  DOCKER_LXC_SUFFIX:
     description: "Subject for new docker lxc (e.g. 'foo' for 'docker-foo')"
-  DOCKER_IMAGE_UPDATE_GID:
+  DOCKER_LXC_GID:
     description: "Group id for new docker lxc"
 
 workflow:
@@ -73,5 +73,5 @@ create-docker-lxc:
       - local: 'create-docker-lxc.yml'
   variables:
     PARENT_PIPELINE_ID: $CI_PIPELINE_ID
-    CONTAINER_SUFFIX: $DOCKER_IMAGE_UPDATE_SUFFIX
-    CONTAINER_GID: $DOCKER_IMAGE_UPDATE_GID
+    CONTAINER_SUFFIX: $DOCKER_LXC_SUFFIX
+    CONTAINER_GID: $DOCKER_LXC_GID
