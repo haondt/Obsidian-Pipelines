@@ -8,7 +8,7 @@ variables:
       - "plex_update"
     description: "Task to run"
   CONTAINER_SUFFIX:
-    value: ""
+    description: "Subject for new docker lxc (e.g. 'foo' for 'docker-foo')"
   CONTAINER_GID:
     description: "Group id for new docker lxc"
 
