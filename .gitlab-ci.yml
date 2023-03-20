@@ -7,6 +7,7 @@ variables:
       - "create_docker_lxc"
       - "plex_update"
     description: "Task to run"
+  CONTAINER_SUFFIX:
 
 workflow:
   name: $TASK
@@ -69,3 +70,4 @@ create-docker-lxc:
       - local: 'create-docker-lxc.yml'
   variables:
     PARENT_PIPELINE_ID: $CI_PIPELINE_ID
+    CONTAINER_SUFFIX: $CONTAINER_SUFFIX

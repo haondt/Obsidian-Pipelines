@@ -10,7 +10,8 @@ stages:
 check-variables:
   stage: verify
   script:
-    - echo $CONTAINER_SUFFIX $CONTAINER_GID
+    - "[ -z $CONTAINER_SUFFIX ]"
+    - "[ -z $CONTAINER_GID ]"
 
 provision:
   stage: deploy
