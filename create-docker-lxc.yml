@@ -16,7 +16,9 @@ provision:
     - check-variables
   script:
     - cd ansible
-    - ansible-playbook playbooks/create_docker_lxc.yml -e "container_suffix=$CONTAINER_SUFFIX"
+    - >-
+      ansible-playbook playbooks/create_docker_lxc.yml
+      -e "container_suffix=$CONTAINER_SUFFIX"
   artifacts:
     paths:
       - lxc.json
@@ -30,12 +32,7 @@ setup:
     - provision
   script:
     - cd ansible
-    - |-
-      ansible-playbook playbooks/set_up_docker_lxc.yml
-      -e "container_suffix=$X"
-      -e "container_ip=$Y"
-      -e "container_gid=$Z"
-      -e "container_id=$A"
+    - eval $(cat lxc.json | python3 generators/create-docker-lxc/ansible-cmd-generator.py $CONTAINER_GID)
   artifacts:
     paths:
       - report.txt
