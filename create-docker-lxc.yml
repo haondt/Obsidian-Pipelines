@@ -5,10 +5,8 @@ stages:
 check-variables:
   stage: verify
   script:
-    - echo $PARENT_PIPELINE_ID
-    - echo $CONTAINER_SUFFIX
-    - "[ -z $CONTAINER_SUFFIX ]"
-    #- "[ -z $CONTAINER_GID ]"
+    - "! [[ -z $CONTAINER_SUFFIX ]]"
+    - "! [[ -z $CONTAINER_GID ]]"
 
 provision:
   stage: deploy
