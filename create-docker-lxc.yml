@@ -33,7 +33,7 @@ setup:
     - provision
   script:
     - cd ansible
-    - eval $(cat ../lxc.json | python3 generators/create-docker-lxc/ansible-cmd-generator.py $CONTAINER_GID)
+    - eval $(cat ../lxc.json | python3 ../generators/create-docker-lxc/ansible-cmd-generator.py $CONTAINER_GID)
     - mv report.txt ..
   artifacts:
     paths:
