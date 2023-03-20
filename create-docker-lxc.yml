@@ -1,0 +1,46 @@
+
+variables:
+  CONTAINER_SUFFIX:
+  CONTAINER_IP:
+
+stages:
+  - verify
+  - deploy
+
+check-variables:
+  stage: verify
+  script:
+    - echo $CONTAINER_SUFFIX $CONTAINER_GID
+
+provision:
+  stage: deploy
+  needs:
+    - pipeline: $PARENT_PIPELINE_ID
+      job: get-ansible-scripts
+    - check-variables
+  script:
+    - cd ansible
+    - ansible-playbook playbooks/create_docker_lxc.yml -e "container_suffix=$CONTAINER_SUFFIX"
+  artifacts:
+    paths:
+      - lxc.json
+    expire_in: 1 day
+
+setup:
+  stage: deploy
+  needs:
+    - pipeline: $PARENT_PIPELINE_ID
+      job: get-ansible-scripts
+    - provision
+  script:
+    - cd ansible
+    - |-
+      ansible-playbook playbooks/set_up_docker_lxc.yml
+      -e "container_suffix=$X"
+      -e "container_ip=$Y"
+      -e "container_gid=$Z"
+      -e "container_id=$A"
+  artifacts:
+    paths:
+      - report.txt
+    expire_in: 1 day
