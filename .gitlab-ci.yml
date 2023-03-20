@@ -8,6 +8,9 @@ variables:
       - "plex_update"
     description: "Task to run"
   CONTAINER_SUFFIX:
+    value: ""
+  CONTAINER_GID:
+    description: "Group id for new docker lxc"
 
 workflow:
   name: $TASK
