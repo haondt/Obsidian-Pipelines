@@ -19,6 +19,7 @@ provision:
     - >-
       ansible-playbook playbooks/create_docker_lxc.yml
       -e "container_suffix=$CONTAINER_SUFFIX"
+    - mv lxc.json ..
   artifacts:
     paths:
       - lxc.json
@@ -33,6 +34,7 @@ setup:
   script:
     - cd ansible
     - eval $(cat lxc.json | python3 generators/create-docker-lxc/ansible-cmd-generator.py $CONTAINER_GID)
+    - mv report.txt ..
   artifacts:
     paths:
       - report.txt
