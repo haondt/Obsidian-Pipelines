@@ -8,4 +8,4 @@ run-update:
       job: get-ansible-scripts
   script:
     - cd ansible
-    - ansible-playbook playbooks/plex_update.yml --limit plex
+    - ansible-playbook playbooks/plex_update.yml --limit plex -e "option_plex_version=$PLEX_VERSION"

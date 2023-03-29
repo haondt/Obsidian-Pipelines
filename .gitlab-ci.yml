@@ -7,6 +7,15 @@ variables:
       - "create_docker_lxc"
       - "plex_update"
     description: "Task to run"
+  PLEX_VERSION:
+    value: "Ubuntu (16.04+) / Debian (8+) - Intel/AMD 64-bit"
+    options:
+    - "Ubuntu (16.04+) / Debian (8+) - Intel/AMD 32-bit"
+    - "Ubuntu (16.04+) / Debian (8+) - Intel/AMD 64-bit"
+    - "Ubuntu (16.04+) / Debian (8+) - ARMv8"
+    - "Ubuntu (16.04+) / Debian (8+) - ARMv7"
+    - "Fedora (27+) / CentOS (7+) / SUSE (15+) - Intel/AMD 32-bit"
+    - "Fedora (27+) / CentOS (7+) / SUSE (15+) - Intel/AMD 64-bit"
   DOCKER_LXC_SUFFIX:
     description: "Subject for new docker lxc (e.g. 'foo' for 'docker-foo')"
   DOCKER_LXC_GID:
@@ -53,6 +62,7 @@ plex-update:
       - local: 'plex-update.yml'
   variables:
     PARENT_PIPELINE_ID: $CI_PIPELINE_ID
+    PLEX_VERSION: $PLEX_VERSION
 
 apt-upgrade:
   stage: bootstrap
