@@ -7,8 +7,7 @@ run-update:
     - pipeline: $PARENT_PIPELINE_ID
       job: get-ansible-scripts
   script:
-    - echo "$PLEX_VERSION"
     - cd ansible
     - >-
       ansible-playbook playbooks/plex_update.yml --limit plex
-      -e "option_plex_version=$PLEX_VERSION"
+      -e "option_plex_version='$PLEX_VERSION'"
