@@ -1,14 +1,15 @@
 variables:
   TASK:
     value: "docker_image_update"
+    description: "Task to run"
     options:
       - "docker_image_update"
       - "apt_upgrade"
       - "create_docker_lxc"
       - "plex_update"
-    description: "Task to run"
   PLEX_VERSION:
     value: "Ubuntu (16.04+) / Debian (8+) - Intel/AMD 64-bit"
+    description: "Version of plex to download"
     options:
       - "Ubuntu (16.04+) / Debian (8+) - Intel/AMD 32-bit"
       - "Ubuntu (16.04+) / Debian (8+) - Intel/AMD 64-bit"
